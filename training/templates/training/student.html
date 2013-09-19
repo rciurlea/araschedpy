@@ -1,0 +1,26 @@
+{% extends "training/base.html" %}
+{% block content %}
+<div id="main_menu">
+<ul class="main_menubar">
+	<li class="main_menubar"><a class="main_menubar" href="{% url 'students' %}">Totaluri</a></li>
+	{% if students %}
+	{% for student in students %}
+	{% if student.code == code %}
+	<li class="main_menubar"><a class="main_menubar_selected" href="{% url 'exercises' student.code %}">{{student.code}}</a></li>
+	{% else %}
+	<li class="main_menubar"><a class="main_menubar" href="{% url 'exercises' student.code%}">{{student.code}}</a></li>
+	{% endif %}
+	{% endfor %}
+	{% endif %}
+	<li id="logout_li"><a class="main_menubar" href="{% url 'logout' %}">Logout</a></li>
+</ul>
+</div>
+<ul class="main_menubar">
+	<li class="main_menubar"><a class="secondary_menubar" href="{% url 'exercises' code %}">Exerciții</a></li>
+	<li class="main_menubar"><a class="secondary_menubar" href="{% url 'logbook' code %}">Ieșiri (logbook)</a></li>
+	<li class="main_menubar"><a class="secondary_menubar" href="{% url 'statistics' code %}">Elicoptere / Instructori</a></li>
+	<li class="main_menubar"><a class="secondary_menubar" href="{% url 'daily' code %}">Ore pe zile</a></li>
+</ul>
+{% block student_content %}
+{% endblock %}
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends "training/student.html" %}
+{% block student_content %}
+<script type="text/javascript">
+      google.load("visualization", "1", {packages:["corechart"]});
+      google.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data_instructors = google.visualization.arrayToDataTable([
+          ['Instructor', 'Minute'],
+		  {% for instructor in instructor_pie %}
+		  ['{{instructor.instructor__code}}',{{instructor.minutes}}],
+		  {% endfor %}
+        ]);
+		
+        var data_helicopters = google.visualization.arrayToDataTable([
+          ['Instructor', 'Minute'],
+		  {% for helicopter in helicopter_pie %}
+		  ['{{helicopter.helicopter}}',{{helicopter.minutes}}],
+		  {% endfor %}
+        ]);
+
+		
+        var options_instructors = {
+          title: 'Timp de zbor pe instructori'
+        };
+
+		var options_helicopters = {
+          title: 'Timp de zbor pe elicoptere'
+        };
+
+        var chart_instructors = new google.visualization.PieChart(document.getElementById('instructor_chart_div'));
+		var chart_helicopters = new google.visualization.PieChart(document.getElementById('helicopter_chart_div'));
+        chart_instructors.draw(data_instructors, options_instructors);
+		chart_helicopters.draw(data_helicopters, options_helicopters);
+      }
+</script>
+<div id="instructor_chart_div" style="width:800px; height:250px;"></div>
+<div id="helicopter_chart_div" style="width:800px; height:250px;"></div>
+{% endblock %}

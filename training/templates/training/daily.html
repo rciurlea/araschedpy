@@ -1,0 +1,23 @@
+{% extends "training/student.html" %}
+{% block student_content %}
+<div class="totals">
+	Dual: {{totals.dual}} / 85:00<br />
+	PIC: {{totals.pic}} / 50:00<br />
+	Solo: {{totals.solo}} / 15:00<br />
+	Total: {{totals.total}} / 135:00
+</div>
+
+<table id="daily">
+<tr>
+	<th>Data</th>
+	<th>Timp de zbor</th>
+</tr>
+{% for sortie in sorties %}
+{% cycle '' ' class="alt"' as rowclass silent %}
+<tr{{rowclass}}>
+	<td>{{sortie.date|date:"j.m.Y"}}</td>
+	<td>{{sortie.minutes}}</td>
+</tr>
+{% endfor %}
+</table>
+{% endblock %}

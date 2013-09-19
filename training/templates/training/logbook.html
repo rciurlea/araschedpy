@@ -1,0 +1,31 @@
+{% extends "training/student.html" %}
+{% block student_content %}
+<div class="totals">
+	Dual: {{totals.dual}} / 85:00<br />
+	PIC: {{totals.pic}} / 50:00<br />
+	Solo: {{totals.solo}} / 15:00<br />
+	Total: {{totals.total}} / 135:00
+</div>
+
+<table id="daily">
+<tr>
+	<th>Date</th>
+	<th>Aircraft</th>
+	<th>PIC Name</th>
+	<th>Total Time</th>
+	<th>Operating Capacity</th>
+	<th>Remarks &amp; Endorsements</th>
+</tr>
+{% for entry in logbook %}
+{% cycle '' ' class="alt"' as rowclass silent %}
+<tr{{rowclass}}>
+	<td>{{entry.date|date:"j.m.Y"}}</td>
+	<td>{{entry.helicopter}}</td>
+	<td>{{entry.instructor}}</td>
+	<td>{{entry.duration}}</td>
+	<td>{{entry.type}}</td>
+	<td>ex. {{entry.exercise}}</td>
+</tr>
+{% endfor %}
+</table>
+{% endblock %}

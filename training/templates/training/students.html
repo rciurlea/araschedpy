@@ -1,0 +1,46 @@
+{% extends "training/totals.html" %}
+{% block totals_content %}
+<table id="daily">
+<tr>
+	<th>Elev</th>
+	<th>Dublă comandă</th>
+	<th>PIC</th>
+	<th>Simplă comandă</th>
+	<th>Total</th>
+</tr>
+{% for row in student_data %}
+{% cycle '' ' class="alt"' as rowclass silent %}
+<tr{{rowclass}}>
+	<td>{{row.student.full_name}}</td>
+	<td>{{row.hours.dual}}</td>
+	<td>{{row.hours.pic}}</td>
+	<td>{{row.hours.solo}}</td>
+	<td>{{row.hours.total}}</td>
+</tr>
+{% endfor %}
+<tr>
+	<td colspan="4" style="text-align:right;font-weight:bold;">Total</td>
+	<td style="font-weight:bold;">{{time_flown}}</td>
+</tr>
+</table>
+
+<table id="daily">
+<tr>
+	<th>Luna</th>
+{% for s in students %}
+	<th>{{s.code}}</th>
+{% endfor %}
+	<th>Total</th>
+</tr>
+{% for row in monthly_totals %}
+{% cycle '' ' class="alt"' as rowclass silent %}
+<tr{{rowclass}}>
+	<td>{{row.luna|date:"M Y"}}</td>
+	{% for t in row.hours %}
+	<td>{{t}}</td>
+	{% endfor %}
+</tr>
+{% endfor %}
+</table>
+
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends "training/totals.html" %}
+{% block totals_content %}
+<table id="daily">
+<tr>
+	<th>Luna</th>
+{% for inst in instructors %}
+	<th>{{inst}}</th>
+{% endfor %}
+</tr>
+{% for row in monthly_totals %}
+{% cycle '' ' class="alt"' as rowclass silent %}
+<tr{{rowclass}}>
+	<td>{{row.luna|date:"M Y"}}</td>
+	{% for t in row.hours %}
+	<td>{{t}}</td>
+	{% endfor %}
+</tr>
+{% endfor %}
+</table>
+{% endblock %}

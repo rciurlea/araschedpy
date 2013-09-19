@@ -1,0 +1,59 @@
+{% extends "training/student.html" %}
+{% block student_content %}
+<div class="totals">
+	Dual: {{totals.dual}} / 85:00<br />
+	PIC: {{totals.pic}} / 50:00<br />
+	Solo: {{totals.solo}} / 15:00<br />
+	Total: {{totals.total}} / 135:00
+</div>
+
+<div class="exercise_quicklinks">
+{% for entry in data %}
+<a href="#{{entry.exercise.number}}" class="toplink">{{entry.exercise.number}}</a>{% if not forloop.last %} <strong>-</strong>{% endif %}
+{% endfor %}
+</div>
+
+<!-- EXERCISE SECTION LEFT -->
+{% for entry in data %}
+<a id="{{entry.exercise.number}}" />
+<div class="exercise_container">
+<strong>{{entry.exercise.number}} - {{entry.exercise.description}}</strong> (<a class="toplink" href="#top">^sus^</a>)<br />Durata ieșirilor: {{entry.exercise.duration_pretty}}
+{% if entry.exercise.has_control %}<br /><strong>* Necesită control</strong>{% endif %}
+<table>
+<tr>
+<td>
+<table class="exercise_table">
+<tr>
+<td class="sortie_type_td">&nbsp;</td>
+<td class="sortie_type_td"><strong>Dual</strong></td>
+<td class="sortie_type_td"><strong>SPIC</strong></td>
+<td class="sortie_type_td"><strong>Solo</strong></td>
+</tr>
+<tr>
+<td class="sortie_time_td"><strong>Minim</strong></td>
+<td class="sortie_type_td">{{entry.exercise.dual}}</td>
+<td class="sortie_type_td">{{entry.exercise.spic}}</td>
+<td class="sortie_type_td">{{entry.exercise.solo}}</td>
+</tr>
+<tr>
+<td class="sortie_time_td"><strong>Realizat</strong></td>
+<td class="sortie_type_td {% if entry.dual_ok %}enough_time{% else %}little_time{% endif %}">{{entry.dual}}</td>
+<td class="sortie_type_td {% if entry.spic_ok %}enough_time{% else %}little_time{% endif %}">{{entry.spic}}</td>
+<td class="sortie_type_td {% if entry.solo_ok %}enough_time{% else %}little_time{% endif %}">{{entry.solo}}</td>
+</tr>
+</table>
+</td><td>
+{% if entry.sorties %}
+<ul>
+{% for s in entry.sorties %}
+<li class="sortie">{{s.date|date:"j.m.Y"}} - {{s.duration_pretty}} - {{s.get_sortie_type_display}} - YR-MD{{s.helicopter}} - {{s.instructor}}{%if s.control %} - <strong>(control)</strong>{% endif %}</li>
+{% endfor %}
+</ul>
+{% endif %}
+</td>
+</tr>
+</table>
+</div>
+{% endfor %}
+<!-- END EXERCISE SECTION LEFT -->
+{% endblock %}

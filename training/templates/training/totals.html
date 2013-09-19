@@ -1,0 +1,21 @@
+{% extends "training/base.html" %}
+{% block content %}
+<div id="main_menu">
+<ul class="main_menubar">
+	<li class="main_menubar"><a class="main_menubar_selected" href="{% url 'students' %}">Totaluri</a></li>
+	{% if students %}
+	{% for student in students %}
+	<li class="main_menubar"><a class="main_menubar" href="{% url 'exercises' student.code%}">{{student.code}}</a></li>
+	{% endfor %}
+	{% endif %}
+	<li id="logout_li"><a class="main_menubar" href="{% url 'logout' %}">Logout</a></li>
+</ul>
+</div>
+<ul class="main_menubar">
+	<li class="main_menubar"><a class="secondary_menubar" href="{% url 'students' %}">Elevi</a></li>
+	<li class="main_menubar"><a class="secondary_menubar" href="{% url 'choppers' %}">Elicoptere</a></li>
+	<li class="main_menubar"><a class="secondary_menubar" href="{% url 'instructors' %}">Instructori</a></li>
+</ul>
+{% block totals_content %}
+{% endblock %}
+{% endblock %}

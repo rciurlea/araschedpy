@@ -1,0 +1,20 @@
+[30/06/2013 06:51:45.720] (error) logger_writer.c:304 - Could not open
+    '/var/log/cherokee/cherokee.access' for appending | This is probably
+    related to the file permissions. Please make sure that it is writable for
+    the user under which Cherokee is run.
+
+[30/06/2013 06:51:46.157] (error) logger_writer.c:304 - Could not open
+    '/var/log/cherokee/cherokee.access' for appending | This is probably
+    related to the file permissions. Please make sure that it is writable for
+    the user under which Cherokee is run.
+
+[30/06/2013 06:51:46.168] (error) logger_writer.c:304 - Could not open
+    '/var/log/cherokee/cherokee.access' for appending | This is probably
+    related to the file permissions. Please make sure that it is writable for
+    the user under which Cherokee is run.
+
+[30/06/2013 06:51:46.180] (error) logger_writer.c:304 - Could not open
+    '/var/log/cherokee/cherokee.access' for appending | This is probably
+    related to the file permissions. Please make sure that it is writable for
+    the user under which Cherokee is run.
+
