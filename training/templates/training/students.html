@@ -6,6 +6,7 @@
 	<th>Dublă comandă</th>
 	<th>PIC</th>
 	<th>Simplă comandă</th>
+	<th>Noapte</th>
 	<th>Total</th>
 </tr>
 {% for row in student_data %}
@@ -15,11 +16,12 @@
 	<td>{{row.hours.dual}}</td>
 	<td>{{row.hours.pic}}</td>
 	<td>{{row.hours.solo}}</td>
+	<td>{{row.night}}</td>
 	<td>{{row.hours.total}}</td>
 </tr>
 {% endfor %}
 <tr>
-	<td colspan="4" style="text-align:right;font-weight:bold;">Total</td>
+	<td colspan="5" style="text-align:right;font-weight:bold;">Total</td>
 	<td style="font-weight:bold;">{{time_flown}}</td>
 </tr>
 </table>

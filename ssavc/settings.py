@@ -7,8 +7,8 @@ hostname = platform.node()
 if hostname == 'aspen':
 	pathprefix = 'D:/Dropbox/Projects/ssavc'
 	d = True
-elif hostname == 'firefly':
-	pathprefix = '/Users/radu/Dropbox/Projects/ssavc'
+elif hostname == 'firefly.local':
+	pathprefix = '/Users/radu/Projects/Web/ssavc'
 	d = True
 elif hostname == 'maple':
 	pathprefix = 'D:/RC/Dropbox/Projects/ssavc'

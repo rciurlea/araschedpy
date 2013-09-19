@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.db.models import Sum
+from django.db.models import Sum, Q
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 from training.models import Instructor, Student, Exercise, Sortie
@@ -25,6 +25,13 @@ def get_totals(student_code):
 	totals['solo'] = min_to_hr_min(hrs_solo)
 	totals['total'] = min_to_hr_min(hrs_total)
 	return totals
+
+def night_hours(student_code):
+	''' fucking kludge, i swear '''
+	hrs = Sortie.objects.filter(Q(student__code = student_code), Q(exercise__number = '28a' ) or Q(exercise__number = '28b')).aggregate(Sum('duration'))['duration__sum']
+	if hrs: hrs = int(hrs)
+	else: hrs = 0
+	return min_to_hr_min(hrs)
 
 @login_required
 def index(request):
@@ -125,7 +132,7 @@ def students_view(request):
 	students = Student.objects.all()
 	student_data = []
 	for s in students:
-		student_data.append({'student':s, 'hours':get_totals(s.code)})
+		student_data.append({'student':s, 'hours':get_totals(s.code), 'night': night_hours(s.code)})
 	months = Sortie.objects.dates('date', 'month')
 	monthly_totals = []
 	for m in months:
