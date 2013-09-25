@@ -16,6 +16,9 @@ elif hostname == 'maple':
 elif hostname == 'thor':
 	pathprefix = '/var/cherokee/ssavc'
 	d = False
+elif hostname == 'mole':
+    pathprefix = '/home/radu/code/araschedpy'
+    d = True
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
