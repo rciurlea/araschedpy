@@ -28,7 +28,7 @@ def get_totals(student_code):
 
 def night_hours(student_code):
 	''' fucking kludge, i swear '''
-	hrs = Sortie.objects.filter(Q(student__code = student_code), Q(exercise__number = '28a' ) or Q(exercise__number = '28b')).aggregate(Sum('duration'))['duration__sum']
+	hrs = Sortie.objects.filter(Q(student__code = student_code), Q(exercise__number = '28a' ) | Q(exercise__number = '28b')).aggregate(Sum('duration'))['duration__sum']
 	if hrs: hrs = int(hrs)
 	else: hrs = 0
 	return min_to_hr_min(hrs)
